@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детска анимация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/" style="color: #ffffff !important;">CrewWave</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-center flex-row gap-2">
+                <li class="nav-item"><a class="nav-link" href="/">НАЧАЛО</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#about">ЗА НАС</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#jobs">КАРИЕРИ</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-white" href="/child-animation">🎈 ДЕТСКА АНИМАЦИЯ</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-white" href="/sport-animation">⚽ СПОРТНА АНИМАЦИЯ</a></li>
+                <li class="nav-item ms-auto"><a id="authBtn" href="/login" class="btn btn-custom shadow-sm text-white">ВХОД / РЕГИСТРАЦИЯ</a></li>
+                <li class="nav-item ms-2" id="logoutLi" style="display:none;"><a href="/logout" class="btn btn-outline-light shadow-sm">ИЗХОД</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    async function updateNavbarAuth() {
+        try {
+            const res = await fetch('/api/me');
+            const data = await res.json();
+            const authBtn = document.getElementById('authBtn');
+            const logoutLi = document.getElementById('logoutLi');
+            const videoSection = document.getElementById('videoSection');
+            const videoLoginMsg = document.getElementById('videoLoginMsg');
+            if (!authBtn || !logoutLi) return;
+            if (data.loggedIn) {
+                authBtn.textContent = "ПРОФИЛ: " + data.user.username;
+                authBtn.href = "/profile";
+                logoutLi.style.display = "block";
+                if (videoSection) videoSection.style.display = "block";
+                if (videoLoginMsg) videoLoginMsg.style.display = "none";
+            } else {
+                authBtn.textContent = "ВХОД / РЕГИСТРАЦИЯ";
+                authBtn.href = "/login";
+                logoutLi.style.display = "none";
+                if (videoSection) videoSection.style.display = "none";
+                if (videoLoginMsg) videoLoginMsg.style.display = "block";
+            }
+        } catch (e) {}
+    }
+    updateNavbarAuth();
+</script>
+
+<div class="container" style="padding-top:120px;">
+
+    <h1 class="text-center mb-4">🎈 Детска анимация</h1>
+
+    <!-- ВИДЕО (само за логнати потребители) -->
+    <div id="videoSection" class="mb-5" style="display:none;">
+        <video controls class="w-100 rounded-4 shadow" style="max-height:520px;">
+            <source src="/videos/child-animation.mp4" type="video/mp4">
+            Вашият браузър не поддържа видео.
+        </video>
+    </div>
+    <div id="videoLoginMsg" class="alert text-center mb-5" style="display:none; background:#fff8f0; border:1.5px solid #ff6b6b; border-radius:16px; color:#ff6b6b; font-weight:600;">
+        🔐 Влезте в профила си, за да гледате видеото.
+        <a href="/login" class="btn btn-sm ms-3" style="background:#ff6b6b; color:#fff; border-radius:8px;">ВХОД</a>
+    </div>
+
+    <!-- INTRO SECTION -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold mb-3" style="color:#222;">Какво представлява детската анимация?</h2>
+        <p class="lead mx-auto" style="max-width:720px; color:#555; line-height:1.8;">
+            Детската анимация е организиране на игри, творчески дейности и забавления за деца в хотелски комплекси. Целта на детския аниматор е всяко дете да се чувства щастливо, сигурно и доволно. Когато детето е усмихнато и доволно, и неговите родители остават доволни — а това е най-важният показател за добре свършена работа.
+        </p>
+    </div>
+
+    <!-- ACTIVITIES SECTION -->
+    <div class="mb-5">
+        <h3 class="text-center fw-bold mb-4" style="color:#ff6b6b;">🎨 Основни дейности</h3>
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">🎮</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Групови игри</h5>
+                    <p class="text-muted small">Организирани игри за деца сутрин и следобед по предварително зададена програма, която гостите могат да видят на рецепцията.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">🎨</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Творчески дейности</h5>
+                    <p class="text-muted small">Рисуване, оцветяване, занаяти и творчески дейности, подходящи за всички деца.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">🏊</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Игри около басейна</h5>
+                    <p class="text-muted small">Следобед децата излизат навън около басейна за игри на открито. Аниматорите осигуряват постоянно наблюдение и безопасност.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">🎤</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Мини шоу програми</h5>
+                    <p class="text-muted small">Малки сценични изяви и изненади за децата — детска дискотека, музикални игри и незабравими моменти за всяко дете.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- WORKING HOURS SECTION -->
+    <div class="mb-5">
+        <h3 class="text-center fw-bold mb-2" style="color:#ff6b6b;">🗓️ Работен ден на детския аниматор</h3>
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <div class="rounded-4 p-4 h-100" style="background:#fff8f0; border-left: 5px solid #ff6b6b;">
+                    <div class="fw-bold mb-1" style="color:#ff6b6b; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Подготовка · 09:45</div>
+                    <h6 class="fw-bold mb-2">Подготовка на детския клуб</h6>
+                    <p class="text-muted small mb-0">Аниматорите пристигат 15 минути преди отварянето на клуба, за да подготвят пространството, материалите и дейностите за деня. Детският клуб отваря точно в 10:00.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="rounded-4 p-4 h-100" style="background:#f0fbff; border-left: 5px solid #4ecdc4;">
+                    <div class="fw-bold mb-1" style="color:#4ecdc4; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Сутрин · 10:00 – 12:30</div>
+                    <h6 class="fw-bold mb-2">Сутришна програма в клуба</h6>
+                    <p class="text-muted small mb-0">Новите гости попълват декларация с имена на родителя и детето, телефонен номер и години на детето. Провеждат се организирани игри и творчески дейности по програма.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="rounded-4 p-4 h-100" style="background:#f5f0ff; border-left: 5px solid #6f42c1;">
+                    <div class="fw-bold mb-1" style="color:#6f42c1; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Следобед · 15:00 – 17:00</div>
+                    <h6 class="fw-bold mb-2">Следобедна програма и игри навън</h6>
+                    <p class="text-muted small mb-0">Около 1 час дейности в клуба, след което децата се изкарват около басейна за игри на открито. Децата никога не се оставят без наблюдение, дори за кратко.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RULES SECTION -->
+    <div class="py-5 px-4 mb-5 rounded-4" style="background: linear-gradient(135deg, #fff5f5 0%, #e8fffe 100%); border: 1.5px solid #e0e0e0;">
+        <h3 class="text-center fw-bold mb-4" style="color:#ff6b6b;">📋 Правила за поведение с децата</h3>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#ff6b6b22;font-size:1.5rem;">🔇</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#ff6b6b;">Никога не се вика</h6>
+                        <p class="text-muted small mb-0">Никога не се вика пред дете или към дете — каквото и да е станало. Запазвай спокоен тон дори когато ситуацията е напрегната.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#4ecdc422;font-size:1.5rem;">🤗</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#4ecdc4;">Без принуда</h6>
+                        <p class="text-muted small mb-0">Не стресирай детето и не го принуждавай да участва в дейност, която не иска. Участието трябва да е доброволно и забавно.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#ffe06622;font-size:1.5rem;">👀</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#e0a800;">Постоянно наблюдение</h6>
+                        <p class="text-muted small mb-0">Децата никога не се оставят без наблюдение — дори за кратко. Безопасността на детето е приоритет номер едно.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#6f42c122;font-size:1.5rem;">📵</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#6f42c1;">Без телефон</h6>
+                        <p class="text-muted small mb-0">Не ползвай телефона по време на работа с деца. Вниманието ти трябва да е изцяло насочено към тях.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUALITIES SECTION -->
+    <div class="py-5 px-4 mb-5 rounded-4" style="background: linear-gradient(135deg, #f0fbff 0%, #fff5f5 100%); border: 1.5px solid #e0e0e0;">
+        <h3 class="text-center fw-bold mb-4" style="color:#4ecdc4;">💪 Необходими качества</h3>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#ff6b6b22;font-size:1.5rem;">😊</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#ff6b6b;">Усмивката е задължителна</h6>
+                        <p class="text-muted small mb-0">Усмивката е най-важният инструмент на детския аниматор. Тя създава доверие, настроение и позитивна атмосфера за всяко дете.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#4ecdc422;font-size:1.5rem;">🧘</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#4ecdc4;">Търпение</h6>
+                        <p class="text-muted small mb-0">Работата с деца изисква огромно търпение. Спокойствието в трудни моменти е признак на истински професионалист.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#ffe06622;font-size:1.5rem;">🎭</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#e0a800;">Креативност</h6>
+                        <p class="text-muted small mb-0">Креативните идеи правят всяка дейност уникална и запомняща се. Добрият аниматор винаги измисля нещо ново и интересно за децата.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width:52px;height:52px;background:#6f42c122;font-size:1.5rem;">🛡️</div>
+                    <div>
+                        <h6 class="fw-bold mb-1" style="color:#6f42c1;">Отговорност</h6>
+                        <p class="text-muted small mb-0">Всяко дете е поверено в грижата на аниматора. Отговорното отношение гарантира спокойствието на децата и на техните родители.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RECOMMENDATIONS SECTION -->
+    <div class="mb-5">
+        <h3 class="text-center fw-bold mb-4" style="color:#ff6b6b;">✅ Препоръки за работата</h3>
+        <div class="row g-4">
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">😁</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Усмивка</h5>
+                    <p class="text-muted small">Усмивката е задължителна. Тя е твоята визитна картичка и първото нещо, което децата и родителите виждат.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">📦</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Предварителна подготовка</h5>
+                    <p class="text-muted small">Подготвяш всички материали преди началото на всяка дейност, не по време на нея. Организацията е ключът към успешна програма.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">📵</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Без телефон</h5>
+                    <p class="text-muted small">Телефонът остава настрана по време на работа с деца. Фокусът ти е 100% върху децата — те го усещат и го оценяват.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm text-center p-3" style="border-radius:16px; transition: transform .2s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="mb-3" style="font-size:2.8rem;">🏆</div>
+                    <h5 class="fw-bold" style="color:#ff6b6b;">Детето излиза с усмивка</h5>
+                    <p class="text-muted small">Най-важното е детето да си тръгне с усмивка. Доволното дете означава доволни родители — това е успехът на детската анимация.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BENEFITS SECTION -->
+    <div class="mb-5 py-5 px-4 rounded-4 text-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+        <h3 class="fw-bold text-white mb-5">🎯 Защо да изберете детска анимация?</h3>
+        <div class="row g-4 justify-content-center">
+            <div class="col-sm-6 col-lg-3">
+                <div class="rounded-4 p-4" style="background:rgba(255,255,255,0.07);">
+                    <div style="font-size:2.2rem;">❤️</div>
+                    <h6 class="text-white fw-bold mt-2 mb-1">1. Работа с деца</h6>
+                    <p class="small mb-0" style="color:rgba(255,255,255,0.6);">Ако обичаш децата, тази работа ще те зарежда с енергия всеки ден. Радостта на едно дете е безценна награда.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="rounded-4 p-4" style="background:rgba(255,255,255,0.07);">
+                    <div style="font-size:2.2rem;">🌱</div>
+                    <h6 class="text-white fw-bold mt-2 mb-1">2. Личностно развитие</h6>
+                    <p class="small mb-0" style="color:rgba(255,255,255,0.6);">Работата с деца изгражда търпение, комуникативност, креативност и отговорност — умения за цял живот.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="rounded-4 p-4" style="background:rgba(255,255,255,0.07);">
+                    <div style="font-size:2.2rem;">🤝</div>
+                    <h6 class="text-white fw-bold mt-2 mb-1">3. Доверие от родителите</h6>
+                    <p class="small mb-0" style="color:rgba(255,255,255,0.6);">Когато родителите виждат, че детето им е щастливо и в безопасност, те ти имат пълно доверие и се наслаждават на почивката си.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="rounded-4 p-4" style="background:rgba(255,255,255,0.07);">
+                    <div style="font-size:2.2rem;">🎈</div>
+                    <h6 class="text-white fw-bold mt-2 mb-1">4. Незабравими моменти</h6>
+                    <p class="small mb-0" style="color:rgba(255,255,255,0.6);">Създаваш спомени, които децата носят у дома. Ти си частта от почивката, която те помнят най-дълго.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <div class="text-center py-4 mb-5 rounded-4" style="background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%);">
+        <h4 class="fw-bold text-white mb-2">Готов ли си да направиш теста?</h4>
+        <p class="text-white mb-4" style="opacity:0.92;">Провери знанията си за детската анимация!</p>
+        <a href="/child-test" class="btn btn-light btn-lg shadow fw-bold px-5" style="color:#ff6b6b; border-radius:30px;">
+            🎈 Кликни тук
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

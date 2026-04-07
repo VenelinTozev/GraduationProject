@@ -1,0 +1,1294 @@
+:root {
+    /* СВЕТЛА И СВЕЖА ТЕМА */
+    --bg-main: #ffffff;       
+    --bg-secondary: #f8fafc;  /* Много светло сиво за секциите */
+    --text-main: #334155;     /* Тъмно сиво-синьо (меко за четене) */
+    --text-dark: #0f172a;     /* За заглавия */
+    
+    /* Акцентни цветове */
+    --accent-blue: #0284c7;   /* Морско синьо */
+    --accent-orange: #f97316; /* Слънчево оранжево */
+    
+    /* Сянка за карти (Soft Shadow) */
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    margin: 0; 
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- Навигация (Градиент розово-тюркоаз) --- */
+.navbar {
+  background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.navbar-brand { font-weight: 800; color: #ffffff !important; letter-spacing: 1px; }
+.navbar-brand span { color: #ffffff; }
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.nav-link:hover { color: #0f172a !important; }
+
+.navbar-toggler {
+    border-color: #ffffff !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* --- HERO Секция --- */
+.hero-bvs {
+    height: 50vh;
+    /* Светъл слой върху снимката */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1600');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* --- КАРТИ (Бели и елегантни) --- */
+.bvs-card {
+    background: #ffffff;
+    color: var(--text-main);
+    border-radius: 12px;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none; /* Без рамки, само сянка */
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.bvs-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15); /* По-силна сянка при ховър */
+}
+
+.icon-circle { 
+    font-size: 45px; 
+    margin-bottom: 15px;
+    color: var(--accent-blue);
+}
+
+.bvs-card h5 {
+    color: var(--text-dark);
+    font-weight: 800;
+}
+
+.bvs-card p.small {
+    color: #64748b; /* Сив текст */
+    font-size: 0.9rem;
+}
+
+/* --- СЕКЦИЯ СТАТИСТИКА --- */
+.stats-section {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.stats-section .text-center h4 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.stats-section .text-center p {
+    display: none;
+}
+
+.stats-section .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-section .col-12 {
+    flex: 0 0 calc(33.333% - 1rem);
+    padding: 0 1rem;
+}
+
+.stats-section .bvs-card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0 !important;
+    transition: none;
+}
+
+.stats-section .bvs-card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.stats-section .icon-circle {
+    display: none;
+}
+
+.stat-number { 
+    font-size: 5rem; 
+    font-weight: 900; 
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.stat-label { 
+    font-size: 1.1rem; 
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 2px;
+    text-transform: lowercase;
+}
+
+.stats-section .small {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .stats-section {
+        padding: 60px 0;
+    }
+    
+    .stats-section .col-12 {
+        flex: 0 0 100%;
+        margin-bottom: 40px;
+    }
+    
+    .stat-number {
+        font-size: 3.5rem;
+    }
+}
+
+/* --- Текстови Секции --- */
+section { padding: 80px 0; }
+
+.bg-light-gray { background-color: var(--bg-secondary); }
+
+.section-title {
+    color: var(--accent-blue);
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p.lead {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* Списъци */
+.feature-list li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    color: var(--text-main);
+}
+.feature-list li::before {
+    content: "✓";
+    color: var(--accent-orange);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Снимки */
+.content-img {
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Бутони */
+.btn-custom {
+    background-color: var(--accent-orange);
+    color: #fff;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3);
+}
+.btn-custom:hover {
+    background-color: #ea580c; /* По-тъмно оранжево */
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Футър */
+footer {
+    background-color: var(--text-dark);
+    color: #94a3b8;
+    padding: 40px 0 50px;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-label {
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 14px;
+}
+
+.footer-contact-item {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.footer-contact-item:hover {
+  color: #fff;
+}
+
+.footer-contact-sep {
+  color: #475569;
+  font-size: 1.1rem;
+}
+
+
+/* --- ВХОД И РЕГИСТРАЦИЯ (Светъл стил) --- */
+.auth-bg {
+    /* Слънчева снимка за фон */
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('https://images.unsplash.com/photo-1533745848184-3db07256e163?w=1600');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.85); /* Бяло стъкло */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+    color: var(--text-dark);
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-input {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    color: var(--text-dark) !important;
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+.auth-input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.auth-link {
+    color: var(--accent-blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Локации (малките карти долу) */
+.location-card {
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    color: var(--text-dark);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.location-card:hover {
+    transform: translateY(-5px);
+}
+.location-card h5 { color: var(--accent-blue); }
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,200,87,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(56,189,248,0.18), transparent 40%),
+    linear-gradient(135deg, #0b1020, #0e1a3a);
+}
+
+.auth-card {
+  max-width: 600px;
+  width: 100%;
+  padding: 35px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.auth-card h2 {
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-card label {
+  color: #ececec;
+  font-weight: 500;
+}
+
+.auth-card .form-control {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+}
+
+.auth-card .form-control:focus {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,200,87,0.6);
+  box-shadow: none;
+}
+
+.auth-card .btn-custom {
+  background-color: #ffc857;
+  color: #0b1020;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.auth-card .btn-custom:hover {
+  background-color: #ffdc87;
+}
+
+.auth-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 15px 30px;
+
+  background:
+    radial-gradient(circle at 80% 30%, rgba(56,189,248,0.20), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(139,92,246,0.15), transparent 50%),
+    linear-gradient(135deg, #0b1020, #111a38);
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.auth-input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.auth-input:focus {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(2,132,199,0.6);
+  box-shadow: none;
+  color: #fff;
+}
+
+.btn-custom {
+  background: linear-gradient(90deg, #0284c7, #0b63b5);
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.btn-custom:hover {
+  background: linear-gradient(90deg, #0369a1, #0b63b5);
+  transform: translateY(-2px);
+}
+
+.auth-link {
+  color: #0284c7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ===== VT Creative Theme (light but fun) ===== */
+
+:root{
+  --vt-dark: #0b1020;
+  --vt-dark2:#111a38;
+  --vt-yellow:#ffc857;
+  --vt-blue:#38bdf8;
+  --vt-purple:#8b5cf6;
+}
+
+.navbar{
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.navbar .nav-link{
+  font-weight: 600;
+  opacity: 0.85;
+}
+.navbar .nav-link:hover{ opacity: 1; }
+
+.btn-custom{
+  background: linear-gradient(90deg, #0284c7, #0b63b5);
+  color: #fff;
+}
+.btn-custom:hover{
+  transform: translateY(-1px);
+}
+
+.hero-bvs{
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,200,87,0.30), transparent 40%),
+    radial-gradient(circle at 80% 25%, rgba(56,189,248,0.22), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(139,92,246,0.16), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1600');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.bvs-card{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  transition: 0.2s;
+}
+.bvs-card:hover{
+  transform: translateY(-4px);
+}
+
+.icon-circle{
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin: 0 auto 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.content-img{
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.bg-light-gray{
+  background: #f6f7fb;
+}
+
+.location-card{
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* ===== Hero cards: по-надолу + по-чист дизайн ===== */
+.hero-content{
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;     /* сваля надолу */
+  padding-bottom: 90px;      /* колко надолу */
+}
+
+.hero-panel{
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+
+  /* “плътен” фон зад картите, да не прозират */
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 22px;
+  padding: 26px;
+
+  box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+}
+
+/* Карти вътре да са по-стегнати и красиви */
+.hero-panel .bvs-card{
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+}
+
+.hero-panel .bvs-card:hover{
+  transform: translateY(-6px);
+}
+
+/* Иконките да изглеждат като “badge” */
+.hero-panel .icon-circle{
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(2,132,199,0.10);
+  border: 1px solid rgba(2,132,199,0.18);
+  margin-bottom: 12px;
+}
+
+/* --- HERO: трите карти да са отделени и четими върху снимката --- */
+.hero-bvs .bvs-card{
+  background: rgba(255, 255, 255, 0.90);   /* меко бяло, не натрапчиво */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* по-приятен hover */
+.hero-bvs .bvs-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.22);
+}
+
+/* по-нежен “badge” за иконката */
+.hero-bvs .icon-circle{
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(2,132,199,0.10);
+  border: 1px solid rgba(2,132,199,0.18);
+  color: var(--accent-blue);
+  margin: 0 auto 12px;
+}
+
+/* заглавието да е четимо */
+.hero-bvs .bvs-card h5{
+  color: var(--text-dark);
+}
+
+/* текстът да е по-мек */
+.hero-bvs .bvs-card p.small{
+  color: #475569;
+}
+
+/* допълнително “разделяне” между картите (ако искаш още въздух) */
+.hero-bvs .row.g-4{
+  row-gap: 22px;      /* вертикално */
+  column-gap: 10px;   /* хоризонтално */
+}
+
+/* Трите карти винаги на един ред */
+.hero-bvs .col-4 {
+  flex: 0 0 calc(33.333% - 7px) !important;
+}
+
+/* HERO: 3 карти винаги да се събират на един ред (на лаптоп/desktop) */
+.hero-bvs .bvs-card{
+  padding: 22px !important;       /* малко по-малък padding */
+}
+
+.hero-bvs .bvs-card h5{
+  font-size: 1.05rem;             /* леко по-малко заглавие */
+}
+
+.hero-bvs .bvs-card p.small{
+  font-size: 0.85rem;             /* малко по-малък текст */
+}
+
+/* по-малък gap между колоните в hero */
+.hero-bvs .row.g-4{
+  --bs-gutter-x: 1rem;            /* default е 1.5rem; намаляваме */
+}
+/* ===========================
+   SECTION 4: LOCATIONS SLIDER (ONE IMAGE)
+   =========================== */
+
+.locations-slider-section{
+  padding: 60px 0;
+}
+
+.locations-slider-one{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ls-viewport{
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.ls-track{
+  display: flex;
+  will-change: transform;
+  transition: transform 0.8s ease;
+}
+
+/* 1 снимка на екран */
+.ls-card-one{
+  flex: 0 0 100%;
+  position: relative;
+  height: 320px; /* еднаква височина = еднакъв “размер” */
+}
+
+@media (max-width: 768px){
+  .ls-card-one{ height: 240px; }
+}
+
+.ls-card-one img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ls-card-one::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+}
+
+.ls-overlay{
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  z-index: 2;
+  text-align: right;
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+.ls-overlay h3{
+  margin: 0;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.ls-btn{
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.ls-btn:hover{ transform: translateY(-1px); }
+
+/* arrows за fullscreen */
+.ls-btn{
+  position: absolute;
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+
+.ls-btn:hover{
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.ls-prev{
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ls-next{
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  .locations-slider-fullscreen {
+    width: 100%;
+    height: calc(100vh - 80px);
+  }
+
+  .ls-card-fullscreen .ls-overlay h3 {
+    font-size: 1.8rem;
+    right: 20px;
+    top: 20px;
+  }
+
+  .ls-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+
+  .ls-prev { left: 15px; }
+  .ls-next { right: 15px; }
+}
+
+/* =========================================================
+   WARM HOMEPAGE REFRESH (light + warm + friendly)
+   Added at the very end. Does NOT target auth classes.
+   ========================================================= */
+
+/* Топъл underline за заглавията */
+.section-title{
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px;
+}
+.section-title::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  width: 78px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7a59, #ffd6a5);
+}
+
+/* По-топъл “light-gray” фон само за секциите */
+section.bg-light-gray{
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,122,89,0.12), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(255,214,165,0.16), transparent 50%),
+    radial-gradient(circle at 40% 90%, rgba(255,237,213,0.55), transparent 55%),
+    var(--bg-secondary);
+}
+
+/* Карти по-меки и “welcome” */
+.bvs-card{
+  border-radius: 20px;
+  border: 1px solid rgba(2, 6, 23, 0.06);
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.10);
+  overflow: hidden;
+}
+.bvs-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 22px 44px rgba(2, 6, 23, 0.15);
+}
+
+/* По-топъл badge за icon */
+.icon-circle{
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 34px;
+  background: rgba(255, 214, 165, 0.35);
+  border: 1px solid rgba(255, 122, 89, 0.20);
+}
+
+/* Снимките да изглеждат по-“premium” */
+.content-img{
+  border-radius: 22px;
+  border: 1px solid rgba(2,6,23,0.06);
+  box-shadow: 0 18px 44px rgba(2,6,23,0.12);
+}
+
+/* Списъци: топли отметки */
+.feature-list li{
+  padding-left: 30px;
+}
+.feature-list li::before{
+  content: "✔";
+  width: 20px;
+  height: 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 7px;
+  background: rgba(255, 183, 3, 0.18);
+  border: 1px solid rgba(255, 183, 3, 0.28);
+  color: #b45309;
+  left: 0;
+  top: 2px;
+}
+
+/* Малките location cards — по-топли */
+.location-card{
+  border-radius: 18px;
+  border: 1px solid rgba(2,6,23,0.06);
+  box-shadow: 0 12px 26px rgba(2,6,23,0.07);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.location-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(2,6,23,0.12);
+}
+
+/* Slider — по-приятен и топъл */
+.ls-viewport{
+  border-radius: 22px;
+  border: 1px solid rgba(2,6,23,0.06);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 1.12);
+}
+.ls-card::after{
+  background: linear-gradient(90deg, rgba(2,6,23,0.10), rgba(2,6,23,0.62));
+}
+.ls-overlay h3{
+  font-size: 1.9rem;
+}
+.ls-link{
+  border-bottom: 2px solid rgba(255, 183, 3, 0.92);
+}
+.ls-btn{
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(2,6,23,0.10);
+  box-shadow: 0 10px 22px rgba(2,6,23,0.12);
+}
+.ls-btn:hover{
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   ACTIVITIES SECTION STYLES
+   =========================== */
+.activities-section {
+  padding: 80px 0;
+  background: var(--bg-main);
+}
+
+.activity-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+}
+
+.activity-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.activity-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.activity-card:hover .activity-image-wrapper img {
+  transform: scale(1.08);
+}
+
+.activity-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--accent-orange);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.activity-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.activity-content h4 {
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.activity-content p {
+  color: var(--text-main);
+  margin-bottom: 15px;
+}
+
+/* ===========================
+   CONTACT SECTION STYLES
+   =========================== */
+.contact-section {
+  padding: 80px 0;
+}
+
+.contact-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  display: block;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card h5 {
+  color: var(--text-dark);
+  margin: 15px 0;
+  transition: color 0.3s ease;
+}
+
+.contact-card:hover h5 {
+  color: var(--accent-orange);
+}
+
+.contact-card p {
+  color: var(--text-main);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ===========================
+   RESPONSIVE ADJUSTMENTS
+   =========================== */
+@media (max-width: 768px) {
+  .activities-section {
+    padding: 60px 0;
+  }
+
+  .activity-image-wrapper {
+    height: 200px;
+  }
+
+  .activity-badge {
+    top: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+
+  .contact-card {
+    padding: 25px;
+  }
+}
+/* ===== Locations slider: 3 visible cards ===== */
+.locations-slider-section{ padding: 60px 0; }
+
+.locations-slider{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ls-viewport{
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 1.12);
+}
+
+.ls-track{
+  display: flex;
+  will-change: transform;
+  transition: transform .6s ease;
+}
+
+/* 3 cards visible */
+.ls-card{
+  flex: 0 0 33.3333%;
+  height: 240px;
+  position: relative;
+}
+
+@media (max-width: 992px){
+  .ls-card{ flex-basis: 50%; height: 220px; }
+}
+@media (max-width: 576px){
+  .ls-card{ flex-basis: 100%; height: 240px; }
+}
+
+.ls-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* overlay */
+.ls-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.12), rgba(0,0,0,0.55));
+}
+
+.ls-overlay{
+  position:absolute;
+  right: 18px;
+  top: 16px;
+  z-index:2;
+  color:#fff;
+  text-align:right;
+  text-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
+
+.ls-overlay h3{
+  margin:0;
+  font-weight:900;
+  font-size:1.6rem;
+}
+
+.ls-btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+/* ===== Locations slider: 3 visible, no arrows ===== */
+.locations-slider-one{ display:block !important; } /* ако още го имаш */
+.ls-btn{ display:none !important; } /* да няма стрелки, даже да останат в HTML */
+
+.ls-track{
+  display:flex !important;
+  transition: transform .6s ease !important;
+  will-change: transform;
+}
+
+/* 3 карти на ред */
+.ls-card-one{
+  flex: 0 0 33.3333% !important;
+  height: 240px !important;
+  position: relative !important;
+}
+
+@media (max-width: 992px){
+  .ls-card-one{ flex-basis: 50% !important; height: 220px !important; }
+}
+@media (max-width: 576px){
+  .ls-card-one{ flex-basis: 100% !important; height: 240px !important; }
+}
+
+.ls-card-one img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+/* ===== DESTINATIONS — infinite scroll carousel ===== */
+.dest-scroll-section {
+  padding: 30px 0 40px;
+}
+
+.dest-viewport {
+  overflow: hidden;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+}
+
+.dest-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  /* transition driven by JS */
+  will-change: transform;
+}
+
+.dest-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+  flex-shrink: 0;
+  /* width set dynamically by JS */
+  height: 210px;
+}
+
+.dest-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.dest-card:hover img {
+  transform: scale(1.07);
+}
+
+.dest-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.60));
+  padding: 18px 12px 10px;
+  text-align: center;
+}
+
+.dest-overlay h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+/* ===== DESTINATIONS — infinite carousel (JS-driven) ===== */
+
+.locations-slider-section{
+  padding: 40px 0 !important;
+  overflow: hidden !important;
+}
+
+.ls-viewport{
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+.ls-track{
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  /* transition set by JS per-slide */
+  will-change: transform;
+}
+
+.ls-card-one{
+  /* width set by JS to exact pixel value of viewport */
+  flex-shrink: 0 !important;
+  height: 340px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.ls-card-one img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.ls-card-one::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.45));
+}
+
+.ls-overlay{
+  position: absolute;
+  bottom: 20px;
+  right: 28px;
+  z-index: 2;
+  text-align: right;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.ls-overlay h3{
+  margin: 0;
+  font-size: 2rem !important;
+  font-weight: 900;
+}
+
+@media (max-width: 768px){
+  .ls-card-one{ height: 220px !important; }
+  .ls-overlay h3{ font-size: 1.4rem !important; }
+}

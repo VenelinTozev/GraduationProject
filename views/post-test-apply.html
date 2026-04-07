@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кандидатстване - CrewWave</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background: #00aadd;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* NAV */
+    .top-nav {
+      background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .top-nav .brand { font-size: 1.3rem; font-weight: 800; color: #fff; text-decoration: none; }
+    .top-nav .back-btn {
+      color: #fff; border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 6px; padding: 6px 16px; text-decoration: none; font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .top-nav .back-btn:hover { background: rgba(255,255,255,0.15); }
+
+    /* PAGE WRAP */
+    .page-wrap {
+      padding: 90px 16px 70px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* SUCCESS BANNER */
+    .success-banner {
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 16px;
+      padding: 24px 30px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .score-pill {
+      display: inline-block;
+      background: #fff;
+      color: #00aadd;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 7px 26px;
+      border-radius: 30px;
+      margin-top: 10px;
+    }
+
+    /* SECTION TITLE */
+    .sec-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+      margin: 36px 0 20px;
+    }
+
+    /* WHITE INPUTS */
+    .w-input {
+      width: 100%;
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      height: 50px;
+      padding: 0 14px;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+    }
+    .w-input::placeholder { color: #bbb; }
+    .w-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.55); }
+
+    /* QUESTION LABEL */
+    .q-label {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* RADIO / CHECKBOX */
+    .opt-row {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .opt-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .opt-item input[type="radio"],
+    .opt-item input[type="checkbox"] {
+      width: 19px; height: 19px;
+      accent-color: #fff;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .opt-item label {
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.97rem;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    /* LANGUAGE TABLE */
+    .lang-table { width: 100%; border-collapse: collapse; }
+    .lang-table th {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 0 6px 12px;
+      letter-spacing: 0.5px;
+    }
+    .lang-table th:first-child { text-align: left; }
+    .lang-table td {
+      padding: 9px 6px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .lang-table td:first-child {
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      padding-left: 2px;
+    }
+    .lang-table input[type="radio"] {
+      width: 18px; height: 18px;
+      accent-color: #fff;
+      cursor: pointer;
+    }
+
+    /* AVAILABILITY */
+    .avail-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .avail-row .w-input { flex: 1; min-width: 180px; }
+
+    /* CV UPLOAD */
+    .cv-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 36px 0 16px;
+    }
+    .cv-choose-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .cv-choose-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px dashed rgba(255,255,255,0.75);
+      border-radius: 30px;
+      background: transparent;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+      padding: 11px 26px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .cv-choose-btn:hover { background: rgba(255,255,255,0.1); }
+    .cv-choose-wrap input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%;
+    }
+    .cv-file-name {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+
+    /* SUBMIT */
+    .send-btn {
+      background: #FFE600;
+      color: #222;
+      border: none;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 14px 50px;
+      cursor: pointer;
+      margin-top: 36px;
+      transition: 0.2s;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .send-btn:hover { background: #ffd000; transform: translateY(-2px); }
+
+    /* TEXTAREA */
+    .w-area {
+      width: 100%;
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      resize: vertical;
+      min-height: 90px;
+    }
+    .w-area::placeholder { color: #bbb; }
+    .w-area:focus { outline: none; box-shadow: 0 0 0 3px rgba(255,255,255,0.55); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a class="brand" href="/">CrewWave</a>
+  <a class="back-btn" href="/">&#8592; Начало</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- Success banner -->
+  <div class="success-banner">
+    <div style="font-size:2.5rem;">&#127881;</div>
+    <h2 style="font-weight:800; font-size:1.6rem; margin:10px 0 4px;">Поздравления!</h2>
+    <p style="opacity:.9; margin:0 0 6px;">Успешно преминахте теста. Попълнете формата за кандидатстване.</p>
+    <span class="score-pill" id="scorePill">Зарежда...</span>
+  </div>
+
+  <!-- FORM -->
+  <form action="/api/post-apply" method="POST" id="applyForm" enctype="multipart/form-data">
+    <!-- Hidden test info -->
+    <input type="hidden" name="testCode"  id="hiddenCode">
+    <input type="hidden" name="testScore" id="hiddenScore">
+    <input type="hidden" name="testDate"  id="hiddenDate">
+    <input type="hidden" name="testName"  id="hiddenTest">
+
+    <!-- 1. ЛИЧНА ИНФОРМАЦИЯ -->
+    <div class="sec-title">Лична информация / Personal information</div>
+
+    <div class="row g-3 mb-3">
+      <div class="col-6">
+        <input type="text" name="firstName" id="firstName" class="w-input" placeholder="Име" required>
+      </div>
+      <div class="col-6">
+        <input type="text" name="lastName" id="lastName" class="w-input" placeholder="Фамилия" required>
+      </div>
+    </div>
+    <div class="row g-3 mb-3">
+      <div class="col-6">
+        <input type="text" name="city" class="w-input" placeholder="Град" required>
+      </div>
+      <div class="col-6">
+        <input type="text" name="phone" class="w-input" placeholder="Телефон" required>
+      </div>
+    </div>
+    <div class="mb-2">
+      <input type="email" name="email" id="emailField" class="w-input" placeholder="Имейл" required>
+    </div>
+
+    <!-- 2. НАВЪРШЕНО ПЪЛНОЛЕТИЕ -->
+    <div class="sec-title">Навършено пълнолетие</div>
+    <label class="q-label">Имам навършени 18 години?</label>
+    <div class="opt-row mb-2">
+      <div class="opt-item">
+        <input type="radio" name="isAdult" value="yes" id="adultYes" required>
+        <label for="adultYes">Да</label>
+      </div>
+      <div class="opt-item">
+        <input type="radio" name="isAdult" value="no" id="adultNo">
+        <label for="adultNo">Не</label>
+      </div>
+    </div>
+
+    <!-- 3. ГОВОРИМИ ЕЗИЦИ -->
+    <div class="sec-title">Говорими езици / Spoken languages</div>
+
+    <div style="overflow-x:auto;">
+      <table class="lang-table">
+        <thead>
+          <tr>
+            <th style="min-width:110px;">Език</th>
+            <th>A1</th>
+            <th>A2</th>
+            <th>B1</th>
+            <th>B2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Английски</td>
+            <td><input type="radio" name="lang_en" value="A1"></td>
+            <td><input type="radio" name="lang_en" value="A2"></td>
+            <td><input type="radio" name="lang_en" value="B1"></td>
+            <td><input type="radio" name="lang_en" value="B2"></td>
+          </tr>
+          <tr>
+            <td>Немски</td>
+            <td><input type="radio" name="lang_de" value="A1"></td>
+            <td><input type="radio" name="lang_de" value="A2"></td>
+            <td><input type="radio" name="lang_de" value="B1"></td>
+            <td><input type="radio" name="lang_de" value="B2"></td>
+          </tr>
+          <tr>
+            <td>Руски</td>
+            <td><input type="radio" name="lang_ru" value="A1"></td>
+            <td><input type="radio" name="lang_ru" value="A2"></td>
+            <td><input type="radio" name="lang_ru" value="B1"></td>
+            <td><input type="radio" name="lang_ru" value="B2"></td>
+          </tr>
+          <tr>
+            <td>Френски</td>
+            <td><input type="radio" name="lang_fr" value="A1"></td>
+            <td><input type="radio" name="lang_fr" value="A2"></td>
+            <td><input type="radio" name="lang_fr" value="B1"></td>
+            <td><input type="radio" name="lang_fr" value="B2"></td>
+          </tr>
+          <tr>
+            <td>Румънски</td>
+            <td><input type="radio" name="lang_ro" value="A1"></td>
+            <td><input type="radio" name="lang_ro" value="A2"></td>
+            <td><input type="radio" name="lang_ro" value="B1"></td>
+            <td><input type="radio" name="lang_ro" value="B2"></td>
+          </tr>
+          <tr>
+            <td>Турски</td>
+            <td><input type="radio" name="lang_tr" value="A1"></td>
+            <td><input type="radio" name="lang_tr" value="A2"></td>
+            <td><input type="radio" name="lang_tr" value="B1"></td>
+            <td><input type="radio" name="lang_tr" value="B2"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. ПРЕДИШЕН ОПИТ -->
+    <div class="sec-title">Предишен опит</div>
+    <label class="q-label">Имате ли предишен опит като аниматор?</label>
+    <div class="opt-row mb-2">
+      <div class="opt-item">
+        <input type="radio" name="hasExperience" value="yes" id="expYes" required>
+        <label for="expYes">Да</label>
+      </div>
+      <div class="opt-item">
+        <input type="radio" name="hasExperience" value="no" id="expNo">
+        <label for="expNo">Не</label>
+      </div>
+    </div>
+    <div id="expDetail" style="display:none; margin-top:10px;">
+      <textarea name="experienceDetail" class="w-area" placeholder="Опишете накратко опита си..."></textarea>
+    </div>
+
+    <!-- 9. ВЪЗМОЖНОСТ ЗА РАБОТА -->
+    <div class="sec-title">Възможност за работа / Available to work</div>
+    <div class="avail-row mb-2">
+      <input type="text" name="availFrom" class="w-input" placeholder="От месец / From (month)">
+      <input type="text" name="availTo"   class="w-input" placeholder="До месец / To (month)">
+    </div>
+
+    <!-- 10. СНИМКА / CV -->
+    <div class="cv-section-title">Прикачете Фотография или CV / Attach Photo or CV/resume</div>
+    <div class="cv-choose-wrap">
+      <span class="cv-choose-btn">&#128206; ИЗБЕРИ ФАЙЛ / CHOOSE FILE</span>
+      <input type="file" name="cv" id="cvInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+    </div>
+    <div class="cv-file-name" id="cvFileName">Няма избран файл / No file chosen</div>
+
+    <!-- SUBMIT -->
+    <div>
+      <button type="submit" class="send-btn">ИЗПРАТИ / SEND</button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // Fill URL params into hidden fields and score pill
+  const params = new URLSearchParams(window.location.search);
+  const code  = params.get('code')  || 'child';
+  const score = params.get('score') || '0';
+  const date  = params.get('date')  || new Date().toLocaleDateString('bg-BG');
+  const test  = params.get('test')  || '';
+
+  document.getElementById('hiddenCode').value  = code;
+  document.getElementById('hiddenScore').value = score;
+  document.getElementById('hiddenDate').value  = date;
+  document.getElementById('hiddenTest').value  = test;
+  document.getElementById('scorePill').textContent = 'Резултат: ' + score + '%  |  ' + test;
+
+  // Show experience textarea on Da
+  document.querySelectorAll('input[name="hasExperience"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('expDetail').style.display = r.value === 'yes' ? 'block' : 'none';
+    });
+  });
+
+  // Show file name after choosing
+  document.getElementById('cvInput').addEventListener('change', function() {
+    document.getElementById('cvFileName').textContent =
+      this.files[0] ? this.files[0].name : 'Няма избран файл / No file chosen';
+  });
+
+  // Pre-fill from session (server replaces these placeholders)
+  const sFirst = '{{FIRST_NAME}}';
+  const sLast  = '{{LAST_NAME}}';
+  const sEmail = '{{EMAIL}}';
+  if (sFirst && sFirst !== '{{FIRST_NAME}}') document.getElementById('firstName').value  = sFirst;
+  if (sLast  && sLast  !== '{{LAST_NAME}}')  document.getElementById('lastName').value   = sLast;
+  if (sEmail && sEmail !== '{{EMAIL}}')       document.getElementById('emailField').value = sEmail;
+</script>
+
+</body>
+</html>

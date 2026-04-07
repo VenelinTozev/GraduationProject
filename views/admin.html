@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ панел - CrewWave</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    body { background: #f6f7fb; }
+    .admin-wrap { padding-top: 95px; padding-bottom: 60px; }
+    .card-soft { border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 22px rgba(0,0,0,0.06); border-radius: 16px; }
+    .table thead th { background: #1d6fd8; color: #fff; }
+    .badge-pass { background: #16a34a; }
+    .badge-fail { background: #dc2626; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.9rem; }
+    .nav-pills .nav-link { color: #fff; font-weight: 600; font-size: 1rem; background: #1d6fd8; border: 2px solid #1a4fbf; margin-right: 8px; padding: 8px 22px; border-radius: 8px; }
+    .nav-pills .nav-link:hover { background: #1a4fbf; color: #fff; }
+    .nav-pills .nav-link.active { background: #0d47a1; color: #fff; border-color: #0d47a1; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/" style="color: #ffffff !important;">CrewWave</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navAdmin">
+        <ul class="navbar-nav align-items-center ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Начало</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-white" href="/logout">Изход</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container admin-wrap">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <div>
+        <h2 class="fw-bold mb-1">Админ панел</h2>
+        <p class="text-muted mb-0">Управление на кандидатури, резултати и тестови въпроси</p>
+      </div>
+      <span class="badge bg-dark px-3 py-2">VT Admin</span>
+    </div>
+
+    <!-- Tabs -->
+    <!-- Tabs -->
+<ul class="nav nav-pills mb-3" id="adminTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="tab-apps" data-bs-toggle="pill" data-bs-target="#pane-apps" type="button" role="tab">
+      📩 Кандидатури
+    </button>
+  </li>
+
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="tab-users" data-bs-toggle="pill" data-bs-target="#pane-users" type="button" role="tab">
+      👤 Потребители
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="tab-tests" data-bs-toggle="pill" data-bs-target="#pane-tests" type="button" role="tab" onclick="loadTestsDropdown()">
+      ❓ Въпроси
+    </button>
+  </li>
+</ul>
+
+
+    <div class="tab-content" id="adminTabContent">
+
+      <!-- Applications -->
+      <div class="tab-pane fade show active" id="pane-apps" role="tabpanel">
+        <div class="card card-soft p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Кандидатури</h5>
+            <button class="btn btn-sm btn-outline-dark" onclick="loadApplications()">🔄 Обнови</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Име</th>
+                  <th>Email</th>
+                  <th>Телефон</th>
+                  <th>Град</th>
+                  <th>18+</th>
+                  <th>Езици</th>
+                  <th>Дата</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="appsBody">
+                <tr><td colspan="9" class="text-muted">Зареждане...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users -->
+      <div class="tab-pane fade" id="pane-users" role="tabpanel">
+        <div class="card card-soft p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Потребители</h5>
+            <button class="btn btn-sm btn-outline-dark" onclick="loadUsers()">🔄 Обнови</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Потребителско име</th>
+                  <th>Email</th>
+                  <th>Роля</th>
+                  <th>Регистриран на</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="usersBody">
+                <tr><td colspan="6" class="text-muted">Зареждане...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results (removed - no test system) -->
+      <div class="tab-pane fade d-none" id="pane-results" role="tabpanel">
+        <div class="card card-soft p-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Резултати от тестове</h5>
+            <button class="btn btn-sm btn-outline-dark" onclick="loadResults()">🔄 Обнови</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Потребител</th>
+                  <th>Email</th>
+                  <th>Тест</th>
+                  <th>Резултат</th>
+                  <th>Верни</th>
+                  <th>Статус</th>
+                  <th>Дата</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody">
+                <tr><td colspan="8" class="text-muted">Зареждане...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tests / Questions -->
+      <div class="tab-pane fade" id="pane-tests" role="tabpanel">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card card-soft p-3">
+              <h5 class="fw-bold mb-3">Добави въпрос</h5>
+
+              <div class="mb-2">
+                <label class="form-label small text-muted">Тест</label>
+                <select id="testSelect" class="form-select"></select>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label small text-muted">Въпрос</label>
+                <textarea id="qText" class="form-control" rows="3"></textarea>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label small text-muted">A</label>
+                <input id="optA" class="form-control" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label small text-muted">B</label>
+                <input id="optB" class="form-control" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label small text-muted">C</label>
+                <input id="optC" class="form-control" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label small text-muted">D</label>
+                <input id="optD" class="form-control" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small text-muted">Правилен отговор</label>
+                <select id="correct" class="form-select">
+                  <option value="a">A</option>
+                  <option value="b">B</option>
+                  <option value="c">C</option>
+                  <option value="d">D</option>
+                </select>
+              </div>
+
+              <button class="btn btn-dark w-100" onclick="addQuestion()">➕ Добави</button>
+
+              <div id="qMsg" class="alert d-none mt-3 mb-0"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="card card-soft p-3">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Въпроси към избрания тест</h5>
+                <button class="btn btn-sm btn-outline-dark" onclick="loadQuestions()">🔄 Обнови</button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Въпрос</th>
+                      <th>Опции</th>
+                      <th>Правилен</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="qBody">
+                    <tr><td colspan="5" class="text-muted">Избери тест и зареди въпросите.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ---------- Helpers ----------
+    function fmtDate(d){
+      if(!d) return "";
+      const dt = new Date(d);
+      return dt.toLocaleString("bg-BG");
+    }
+
+    // ---------- Applications ----------
+    async function loadApplications(){
+      const body = document.getElementById("appsBody");
+      body.innerHTML = `<tr><td colspan="8" class="text-muted">Зареждане...</td></tr>`;
+      const res = await fetch("/admin/api/applications");
+      const data = await res.json();
+
+      if(!Array.isArray(data)){
+        body.innerHTML = `<tr><td colspan="8" class="text-danger">Грешка: ${data.error || "unknown"}</td></tr>`;
+        return;
+      }
+
+      if(data.length === 0){
+        body.innerHTML = `<tr><td colspan="8" class="text-muted">Няма кандидатури.</td></tr>`;
+        return;
+      }
+
+      body.innerHTML = data.map(a => {
+        let langs = "";
+        try {
+          const obj = typeof a.languages === "string" ? JSON.parse(a.languages) : a.languages;
+          langs = Object.entries(obj || {}).filter(([,v]) => v).map(([k]) => k.toUpperCase()).join(", ") || "-";
+        } catch(e){ langs = "-"; }
+        return `
+          <tr>
+            <td>${a.id}</td>
+            <td>${a.full_name}</td>
+            <td>${a.email}</td>
+            <td>${a.phone}</td>
+            <td>${a.city}</td>
+            <td>${a.age_check ? "✅" : "❌"}</td>
+            <td>${langs}</td>
+            <td>${fmtDate(a.created_at)}</td>
+            <td><button class="btn btn-sm btn-outline-danger" onclick="deleteApp(${a.id})">🗑</button></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    async function deleteApp(id){
+      if(!confirm("Сигурен ли си, че искаш да изтриеш тази кандидатура?")) return;
+      const res = await fetch(`/admin/api/applications/${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if(data.ok) loadApplications();
+      else alert(data.error || "Грешка при изтриване.");
+    }
+
+    // ---------- Users ----------
+    async function loadUsers(){
+      const body = document.getElementById("usersBody");
+      body.innerHTML = `<tr><td colspan="6" class="text-muted">Зареждане...</td></tr>`;
+      const res = await fetch("/admin/api/users");
+      const data = await res.json();
+
+      if(!Array.isArray(data)){
+        body.innerHTML = `<tr><td colspan="6" class="text-danger">Грешка: ${data.error || "unknown"}</td></tr>`;
+        return;
+      }
+
+      if(data.length === 0){
+        body.innerHTML = `<tr><td colspan="6" class="text-muted">Няма потребители.</td></tr>`;
+        return;
+      }
+
+      body.innerHTML = data.map(u => `
+        <tr>
+          <td>${u.id}</td>
+          <td><b>${u.username}</b></td>
+          <td>${u.email}</td>
+          <td>
+            <select class="form-select form-select-sm" onchange="changeRole(${u.id}, this.value)" style="width:110px;">
+              <option value="user" ${u.role === 'user' ? 'selected' : ''}>Потребител</option>
+              <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Администратор</option>
+            </select>
+          </td>
+          <td>${fmtDate(u.created_at)}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${u.id}, '${u.username}')">🗑 Изтрий</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    async function changeRole(userId, newRole){
+      const res = await fetch("/admin/api/users/role", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: userId, role: newRole })
+      });
+      const data = await res.json();
+      if(!data.ok) alert(data.error || "Грешка при промяна на роля.");
+    }
+
+    async function deleteUser(userId, username){
+      if(!confirm(`Сигурен ли си, че искаш да изтриеш потребител "${username}"?`)) return;
+      const res = await fetch(`/admin/api/users/${userId}`, { method: "DELETE" });
+      const data = await res.json();
+      if(data.ok) loadUsers();
+      else alert(data.error || "Грешка при изтриване.");
+    }
+
+    // init
+    loadApplications();
+    loadUsers();
+
+    // Зареди въпросите когато се кликне таба
+    document.getElementById("tab-tests")?.addEventListener("shown.bs.tab", () => {
+      loadTestsDropdown();
+    });
+
+    // ---------- Questions ----------
+    async function loadTestsDropdown() {
+      const sel = document.getElementById("testSelect");
+      const res = await fetch("/admin/api/tests");
+      const data = await res.json();
+      console.log("Tests data:", data);
+      sel.innerHTML = data.map(t => `<option value="${t.id}" data-code="${t.code}">${t.title}</option>`).join("");
+      loadQuestions();
+    }
+
+    document.getElementById("testSelect")?.addEventListener("change", loadQuestions);
+
+    async function loadQuestions() {
+      const sel = document.getElementById("testSelect");
+      if (!sel || !sel.value) return;
+      const body = document.getElementById("qBody");
+      body.innerHTML = `<tr><td colspan="5" class="text-muted">Зареждане...</td></tr>`;
+      const res = await fetch(`/admin/api/questions/${sel.value}`);
+      const data = await res.json();
+      if (!Array.isArray(data) || data.length === 0) {
+        body.innerHTML = `<tr><td colspan="5" class="text-muted">Няма въпроси за този тест.</td></tr>`;
+        return;
+      }
+      body.innerHTML = data.map(q => `
+        <tr>
+          <td>${q.id}</td>
+          <td>${q.question_text}</td>
+          <td class="small">A: ${q.option_a}<br>B: ${q.option_b}<br>C: ${q.option_c}<br>D: ${q.option_d}</td>
+          <td><span class="badge bg-success">${q.correct_answer.toUpperCase()}</span></td>
+          <td><button class="btn btn-sm btn-outline-danger" onclick="deleteQuestion(${q.id})">🗑</button></td>
+        </tr>
+      `).join("");
+    }
+
+    async function addQuestion() {
+      const sel = document.getElementById("testSelect");
+      const msg = document.getElementById("qMsg");
+      const payload = {
+        test_id: sel.value,
+        question_text: document.getElementById("qText").value.trim(),
+        option_a: document.getElementById("optA").value.trim(),
+        option_b: document.getElementById("optB").value.trim(),
+        option_c: document.getElementById("optC").value.trim(),
+        option_d: document.getElementById("optD").value.trim(),
+        correct_answer: document.getElementById("correct").value
+      };
+      const res = await fetch("/admin/api/questions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      msg.className = `alert mt-3 mb-0 ${data.ok ? "alert-success" : "alert-danger"}`;
+      msg.textContent = data.ok ? "✅ Въпросът е добавен!" : data.error;
+      msg.classList.remove("d-none");
+      if (data.ok) {
+        document.getElementById("qText").value = "";
+        document.getElementById("optA").value = "";
+        document.getElementById("optB").value = "";
+        document.getElementById("optC").value = "";
+        document.getElementById("optD").value = "";
+        loadQuestions();
+        setTimeout(() => msg.classList.add("d-none"), 3000);
+      }
+    }
+
+    async function deleteQuestion(id) {
+      if (!confirm("Изтрий въпроса?")) return;
+      const res = await fetch(`/admin/api/questions/${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (data.ok) loadQuestions();
+      else alert(data.error || "Грешка при изтриване.");
+    }
+  </script>
+</body>
+</html>

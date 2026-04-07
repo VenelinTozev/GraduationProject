@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест - Детска анимация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { background: linear-gradient(135deg, #0b1020, #111a38); min-height: 100vh; font-family: 'Montserrat', sans-serif; }
+        .question-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 24px; margin-bottom: 18px; }
+        .question-card p { color: #fff; font-weight: 600; font-size: 1rem; margin-bottom: 14px; }
+        .form-check-label { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+        .form-check-input:checked { background-color: #f97316; border-color: #f97316; }
+        .test-title { color: #fff; font-weight: 800; }
+        .test-subtitle { color: rgba(255,255,255,0.6); }
+        .q-number { color: #f97316; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; }
+        .alert-result { border-radius: 12px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/" style="color:#fff !important;">CrewWave</a>
+        <div class="d-flex gap-2">
+            <a href="/child-animation" class="btn btn-sm btn-outline-light">← Назад</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="padding-top:100px; padding-bottom:60px; max-width:780px;">
+
+    <div id="resultBox"></div>
+
+    <div class="text-center mb-5">
+        <div style="font-size:3rem;">🎈</div>
+        <h2 class="test-title mt-2">Тест: Детска анимация</h2>
+        <p class="test-subtitle">Отговорете на 10 въпроса. За успех са нужни минимум 7 верни отговора.</p>
+    </div>
+
+    <form method="POST" action="/submit-child-test">
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 01 / 10</div>
+            <p>1. Кое е най-важното качество за детски аниматор?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q1" value="a" required><label class="form-check-label">Търпение и доброжелателност</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="b"><label class="form-check-label">Агресивност и настойчивост</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 02 / 10</div>
+            <p>2. Каква е типична дейност за детска анимация?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q2" value="a" required><label class="form-check-label">Мини дискотека и творчески ателиета</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="b"><label class="form-check-label">Нощен бар и хазартни игри</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 03 / 10</div>
+            <p>3. На каква възраст са насочени програмите за детска анимация?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q3" value="a" required><label class="form-check-label">3 – 12 години</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="b"><label class="form-check-label">18 – 25 години</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 04 / 10</div>
+            <p>4. Как трябва да подходиш към плачещо дете?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q4" value="a" required><label class="form-check-label">Успокойш го с внимание и грижа</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="b"><label class="form-check-label">Игнорираш го докато се успокои</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 05 / 10</div>
+            <p>5. Кое е задължение на детския аниматор?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q5" value="a" required><label class="form-check-label">Да следи за безопасността на децата по всяко време</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="b"><label class="form-check-label">Да осигурява напитки за родителите</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 06 / 10</div>
+            <p>6. Колко езика е препоръчително да говори от аниматора?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q6" value="a" required><label class="form-check-label">Поне два езика</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="b"><label class="form-check-label">Само български</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 07 / 10</div>
+            <p>7. Кое НЕ е подходящо при работа с деца?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q7" value="a" required><label class="form-check-label">Групови игри и творчески дейности</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="b"><label class="form-check-label">Показване на страшни филми и хоррори</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 08 / 10</div>
+            <p>8. Кой е главен приоритет по време на детска анимация?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q8" value="a" required><label class="form-check-label">Безопасност и забавление за всички</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="b"><label class="form-check-label">Максимален брой дейности независимо от условията</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 09 / 10</div>
+            <p>9. Каква е ролята на аниматора при творческо ателие?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q9" value="a" required><label class="form-check-label">Направлява, помага и насърчава децата</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="b"><label class="form-check-label">Не се намесва и оставя децата сами</label></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-number">ВЪПРОС 10 / 10</div>
+            <p>10. Как се организират децата при групова игра?</p>
+            <div class="form-check mb-2"><input class="form-check-input" type="radio" name="q10" value="a" required><label class="form-check-label">В малки групи според възрастта</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="b"><label class="form-check-label">Всички заедно независимо от възрастта</label></div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-custom btn-lg px-5 py-3">📝 Изпрати теста</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const box = document.getElementById("resultBox");
+  if (params.get("fail") === "1") {
+    const score = params.get("score") || 0;
+    const total = params.get("total") || 10;
+    box.innerHTML = `<div class="alert alert-danger alert-result mb-4">❌ Неуспешно! Имате ${score} от ${total} верни отговора. Нужни са минимум 7. Опитайте отново!</div>`;
+  }
+</script>
+
+</body>
+</html>

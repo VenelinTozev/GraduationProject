@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrewWave - Начало</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/" style="color: #ffffff !important;">CrewWave</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav align-items-center flex-row gap-2">
+          <li class="nav-item"><a class="nav-link" href="/">НАЧАЛО</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">ЗА НАС</a></li>
+          <li class="nav-item"><a class="nav-link" href="#jobs">КАРИЕРИ</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-white" href="/child-animation">🎈 ДЕТСКА АНИМАЦИЯ</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-white" href="/sport-animation">⚽ СПОРТНА АНИМАЦИЯ</a></li>
+          <li class="nav-item ms-auto"><a id="authBtn" href="/login" class="btn btn-custom shadow-sm text-white">ВХОД / РЕГИСТРАЦИЯ</a></li>
+          <li class="nav-item ms-2" id="logoutLi" style="display:none;"><a href="/logout" class="btn btn-outline-light shadow-sm">ИЗХОД</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ✅ overlay toast -->
+  <div id="toastBox" style="display:none; position:fixed; top:35%; left:50%; transform:translate(-50%,-50%); z-index:9999; background:rgba(0,0,0,0.65); color:#fff; padding:20px 40px; border-radius:12px; font-size:1.3rem; font-weight:600; letter-spacing:0.5px; pointer-events:none;">
+    ✅ Успешен вход!
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "login") {
+      history.replaceState(null, "", window.location.pathname);
+      const toastBox = document.getElementById("toastBox");
+      toastBox.style.display = "block";
+      setTimeout(() => { toastBox.style.display = "none"; }, 3000);
+    }
+  </script>
+
+  <!-- HERO (не го променям, само оправям затварянията) -->
+  <header class="hero-bvs">
+    <div class="container">
+      <div class="row g-4" style="padding-top: 45vh;">
+
+        <div class="col-4">
+          <div class="bvs-card p-4 text-center">
+            <div class="icon-circle">🏢</div>
+            <h5 class="mb-3">ХОТЕЛСКА АНИМАЦИЯ</h5>
+            <p class="small mb-0">ТАНЦОВИ ШОУ ПРОГРАМИ, КОМЕДИЙНИ ВЕЧЕРИ И РАЗВЛЕЧЕНИЯ.</p>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="bvs-card p-4 text-center">
+            <div class="icon-circle">📍</div>
+            <h5 class="mb-3">ЛЕТНИ ДЕСТИНАЦИИ</h5>
+            <p class="small mb-0">РАБОТА В НАЙ-ДОБРИТЕ И ЛУКСОЗНИ МОРСКИ КУРОРТИ.</p>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="bvs-card p-4 text-center">
+            <div class="icon-circle">🤝</div>
+            <h5 class="mb-3">СТАНИ АНИМАТОР</h5>
+            <p class="small mb-0">ИЗЖИВЕЙ ЕДНО НЕЗАБРАВИМО ЛЯТО, КАТО ЧАСТ ОТ ЕКИПА!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =============================
+       ОТ ТУК НАДОЛУ: НОВ LAYOUT
+       ============================= -->
+
+  <!-- STATS: карти + кратък текст -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h4 class="text-uppercase text-white opacity-75 mb-2">Нашият успех в цифри</h4>
+        <p class="mb-0 text-white opacity-75">Растем всяка година благодарение на силен екип и добри партньори.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="bvs-card p-4 text-center h-100">
+            <div class="stat-number">16</div>
+            <div class="stat-label">години опит</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="bvs-card p-4 text-center h-100">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">аниматора</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="bvs-card p-4 text-center h-100">
+            <div class="stat-number">20</div>
+            <div class="stat-label">хотела</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT: по-приятно + CTA -->
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h2 class="section-title">Кои сме ние?</h2>
+          <p class="lead">Ние сме утвърден лидер в сферата на анимационните услуги.</p>
+          <p>Нашата фирма съществува на пазара на туристическите услуги от 2008 година. Предлагайки успешно продукта "хотелска анимация", ние се утвърдихме като една от водещите фирми на българския пазар.</p>
+          <p>Ръководена от амбициозни и енергични хора с дългогодишен опит, нашата цел е да предлагаме конкурентоспособен продукт на своите партньори и незабравими емоции за туристите.</p>
+
+          <div class="mt-4">
+            <button type="button" class="btn btn-custom shadow text-white" onclick="openApplyModal()">КАНДИДАТСТВАЙ</button>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <img src="/images/locations/funpoint.jpg" alt="Нашият екип" class="content-img" style="width:100%;border-radius:12px;object-fit:cover;">
+            </div>
+            <div class="col-12">
+              <div class="bvs-card p-4">
+                <h5 class="mb-2" style="font-weight:800;">Какво ни отличава?</h5>
+                <ul class="list-unstyled feature-list mb-0">
+                  <li>Обучение и ясна структура за нови аниматори</li>
+                  <li>Подкрепа от екип-лидери на място</li>
+                  <li>Програми, които гостите запомнят</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) ЛОКАЦИИ — безкраен caroussel -->
+  <section class="dest-scroll-section bg-light-gray">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Дестинации</h2>
+    </div>
+    <div class="dest-viewport">
+      <div class="dest-track">
+        <!-- оригинални 4 курорта -->
+        <article class="dest-card"><img src="/images/locations/albena.jpg" alt="Албена"><div class="dest-overlay"><h3>к.к. Албена</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/zlatni-pyasaci.jpg" alt="Златни пясъци"><div class="dest-overlay"><h3>Златни пясъци</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/slunchev-bryag.jpg" alt="Слънчев бряг"><div class="dest-overlay"><h3>Слънчев бряг</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/sveti-vlas.jpg" alt="Свети Влас"><div class="dest-overlay"><h3>Свети Влас</h3></div></article>
+        <!-- дублирани за безкраен цикъл -->
+        <article class="dest-card"><img src="/images/locations/albena.jpg" alt="Албена"><div class="dest-overlay"><h3>к.к. Албена</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/zlatni-pyasaci.jpg" alt="Златни пясъци"><div class="dest-overlay"><h3>Златни пясъци</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/slunchev-bryag.jpg" alt="Слънчев бряг"><div class="dest-overlay"><h3>Слънчев бряг</h3></div></article>
+        <article class="dest-card"><img src="/images/locations/sveti-vlas.jpg" alt="Свети Влас"><div class="dest-overlay"><h3>Свети Влас</h3></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES SECTION (Дейната ни в снимки) -->
+  <section class="activities-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Дейностите ни в снимки</h2>
+        <p class="lead">Открий видовете анимация, които предлагаме</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- ДЕТСКА АНИМАЦИЯ -->
+        <div class="col-md-4">
+          <div class="activity-card">
+            <div class="activity-image-wrapper">
+              <img src="/images/locations/detska-animacia.jpg" alt="Детска анимация">
+              <div class="activity-badge">ДЕТСКА</div>
+            </div>
+            <div class="activity-content p-4">
+              <h4 class="fw-bold mb-2">Детска анимация</h4>
+              <p class="small mb-3">Приветстваме децата в детския клуб, както и около басейна, и правим различни игри.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- СПОРТНА АНИМАЦИЯ -->
+        <div class="col-md-4">
+          <div class="activity-card">
+            <div class="activity-image-wrapper">
+              <img src="/images/locations/sportna-animacia.jpg" alt="Спортна анимация">
+              <div class="activity-badge">СПОРТНА</div>
+            </div>
+            <div class="activity-content p-4">
+              <h4 class="fw-bold mb-2">Спортна анимация</h4>
+              <p class="small mb-3">Спортните аниматори организират състезания и спортни активности за възрастната публика.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ВЕЧЕРНА АНИМАЦИЯ -->
+        <div class="col-md-4">
+          <div class="activity-card">
+            <div class="activity-image-wrapper">
+              <img src="/images/locations/vecherna-programa.jpg" alt="Вечерна анимация">
+              <div class="activity-badge">ВЕЧЕРНА</div>
+            </div>
+            <div class="activity-content p-4">
+              <h4 class="fw-bold mb-2">Вечерна анимация</h4>
+              <p class="small mb-3">Специални шоу програми, танцови представления и развлечения всяка вечер.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SPORTS ANIMATION SECTION -->
+  <section class="bg-light-gray">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <img src="/images/locations/sportna-animacia2.jpg" alt="Спортни аниматори" class="content-img">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h2 class="section-title">⚽ Спортна анимация</h2>
+          <p class="lead">Спортните аниматори са отговорни за забавлението на възрастната част от гостите.</p>
+          
+          <div class="mb-4">
+            <h5 class="fw-bold text-dark mb-3">Твоите отговорности:</h5>
+            <ul class="list-unstyled feature-list">
+              <li>Организиране на спортни състезания и игри</li>
+              <li>Водене на водни спортове на плажа</li>
+              <li>Участие и ръководство на турнири</li>
+              <li>Поддържане на висока енергия и мотивация</li>
+            </ul>
+          </div>
+
+          <div class="mt-5 d-flex flex-wrap gap-2">
+            <a href="/sport-animation" class="btn btn-custom shadow text-white">ПОДРОБНОСТИ</a>
+            <a href="/sport-test" class="btn btn-custom shadow-sm text-white">КАНДИДАТСТВАЙ ЧРЕЗ ТЕСТ</a>
+          </div>
+          <p class="small mt-3 text-muted">* Трябва да си логнат за да кандидатстваш</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHILDREN ANIMATION SECTION -->
+  <section>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <img src="/images/locations/detska-animacia2.jpg" alt="Детска анимация" class="content-img">
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <h2 class="section-title">🎈 Детска анимация</h2>
+          <p class="lead">Приемаш децата в детския клуб, записваш ги, запознаваш се с тях и организираш игри.</p>
+          
+          <div class="mb-4">
+            <h5 class="fw-bold text-dark mb-3">Твоите отговорности:</h5>
+            <ul class="list-unstyled feature-list">
+              <li>Приветствие и регистрация на детските гости</li>
+              <li>Организиране на забавни игри и дейности</li>
+              <li>Помощ при запознаване между деца</li>
+              <li>Осигуряване на безопасна и весела атмосфера</li>
+            </ul>
+          </div>
+
+          <div class="mt-5 d-flex flex-wrap gap-2">
+            <a href="/child-animation" class="btn btn-custom shadow text-white">ПОДРОБНОСТИ</a>
+            <a href="/child-test" class="btn btn-custom shadow-sm text-white">КАНДИДАТСТВАЙ ЧРЕЗ ТЕСТ</a>
+          </div>
+          <p class="small mt-3 text-muted">* Трябва да си логнат за да кандидатстваш</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY: (без промяна по съдържание, само g-5) -->
+  <section>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h2 class="section-title">Как протича денят ти?</h2>
+          <p>Ето един типичен ден:</p>
+          <ul class="list-unstyled feature-list">
+            <li>Закуска и среща на екипа.</li>
+            <li>Посрещане на деца и игри в детския клуб.</li>
+            <li>Обяд и свободно време за плаж.</li>
+            <li><strong>Детска дискотека</strong> на сцена.</li>
+            <li>Участие във <strong>вечерната шоу програма</strong>.</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <img src="/images/locations/kak-proticha-denqt-ti.jpg" alt="Как протича денят ти" class="content-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section id="jobs" class="bg-light-gray">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <img src="/images/locations/nie-tursim-teb.jpg" alt="Ние търсим теб" class="content-img">
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <h2 class="section-title">Търсим теб!</h2>
+
+          <div class="mb-4">
+            <h5 class="fw-bold text-dark">Необходими качества:</h5>
+            <ul class="list-unstyled feature-list">
+              <li>Отборен играч и слънчево излъчване.</li>
+              <li>Желание за работа с деца.</li>
+              <li>Владеене на чужд език (Немски, Руски, Английски).</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 class="fw-bold text-dark">Какво предлагаме?</h5>
+            <ul class="list-unstyled feature-list">
+              <li>Безплатно настаняване и храна.</li>
+              <li>Редовно и добро заплащане.</li>
+              <li>Безплатен транспорт.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center">
+    <p class="footer-label">Свържи се с нас</p>
+    <div class="footer-contact">
+      <a href="tel:+359899123456" class="footer-contact-item">📱 +359 (899) 123 456</a>
+      <span class="footer-contact-sep">|</span>
+      <a href="mailto:CrewWave@gmail.com" class="footer-contact-item">📧 CrewWave@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ✅ Скрипт за показване на профил/изход ако си логнат -->
+  <script>
+    async function updateNavbarAuth() {
+      try {
+        const res = await fetch('/api/me');
+        const data = await res.json();
+
+        const authBtn = document.getElementById('authBtn');
+        const logoutLi = document.getElementById('logoutLi');
+
+        if (!authBtn || !logoutLi) return;
+
+        if (data.loggedIn) {
+          authBtn.textContent = "ПРОФИЛ: " + data.user.username;
+          authBtn.href = "/profile";
+          logoutLi.style.display = "block";
+        } else {
+          authBtn.textContent = "ВХОД / РЕГИСТРАЦИЯ";
+          authBtn.href = "/login";
+          logoutLi.style.display = "none";
+        }
+      } catch (e) {
+        console.log("Auth check failed", e);
+      }
+    }
+
+    updateNavbarAuth();
+
+    async function openApplyModal() {
+      const res = await fetch('/api/me');
+      const data = await res.json();
+      if (data.loggedIn) {
+        new bootstrap.Modal(document.getElementById('applyModal')).show();
+      } else {
+        window.location.href = '/login';
+      }
+    }
+  </script>
+
+  <!-- Слайдер дестинации -->
+  <script>
+  (function () {
+    const track    = document.querySelector('.dest-track');
+    const viewport = document.querySelector('.dest-viewport');
+    if (!track || !viewport) return;
+
+    const GAP      = 20;
+    const TOTAL    = 4;    // оригинални карти
+    const INTERVAL = 3000;
+    const SPEED    = 700;
+
+    let index = 0;
+    let busy  = false;
+    let step  = 0;
+
+    function calcStep() {
+      // 3 карти се виждат: cardW = (viewportW - 2*GAP) / 3
+      const vw = viewport.clientWidth;
+      const cardW = (vw - 2 * GAP) / 3;
+      // задаваме ширина на всяка карта
+      Array.from(track.children).forEach(c => c.style.width = cardW + 'px');
+      step = cardW + GAP;
+    }
+
+    function moveTo(i, animated) {
+      track.style.transition = animated ? `transform ${SPEED}ms ease` : 'none';
+      track.style.transform  = `translateX(${-step * i}px)`;
+      if (!animated) track.offsetHeight;
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (index >= TOTAL) {
+        index -= TOTAL;
+        moveTo(index, false);
+      }
+      busy = false;
+    });
+
+    window.addEventListener('resize', () => {
+      calcStep();
+      moveTo(index, false);
+    });
+
+    calcStep();
+    moveTo(0, false);
+
+    setInterval(() => {
+      if (busy) return;
+      busy = true;
+      index++;
+      moveTo(index, true);
+    }, INTERVAL);
+  })();
+  </script>
+
+  <!-- APPLY MODAL -->
+  <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:16px; overflow:hidden;">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold">Избери вид анимация</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-3">
+            <div class="col-6">
+              <a href="/child-animation" class="d-block text-center p-4 bvs-card text-decoration-none" style="border-radius:12px;">
+                <div style="font-size:3rem;">🎈</div>
+                <div class="fw-bold mt-2">Детска<br>анимация</div>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/sport-animation" class="d-block text-center p-4 bvs-card text-decoration-none" style="border-radius:12px;">
+                <div style="font-size:3rem;">⚽</div>
+                <div class="fw-bold mt-2">Спортна<br>анимация</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
